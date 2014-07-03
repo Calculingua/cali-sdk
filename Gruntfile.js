@@ -13,14 +13,14 @@ module.exports = function(grunt) {
 			},
 			webapp: {
 				files: {
-					"dist/cali-calcu.js": grunt.option("src"),
+					"dist/cali-sdk.js": grunt.option("src"),
 				}
 			},
 		},
 		uglify: {
 			my_target: {
 				files: {
-					'dist/cali-calcu.min.js': ["dist/cali-calcu.js"],
+					'dist/cali-sdk.min.js': ["dist/cali-sdk.js"],
 				}
 			}
 		},
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 				tasks: ["concat"]
 			},
 			uglify: {
-				files: ["dist/cali-calcu.js"],
+				files: ["dist/cali-sdk.js"],
 				tasks: ["uglify"]
 			},
 		}
