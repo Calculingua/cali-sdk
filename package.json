@@ -1,0 +1,24 @@
+{
+  "name": "cali-sdk",
+  "version": "0.0.0",
+  "description": "cali-sdk ========",
+  "main": "dist/cali-sdk.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Calculingua/cali-sdk.git"
+  },
+  "author": "William Burke",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Calculingua/cali-sdk/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  }
+}
