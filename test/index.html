@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Jasmine Spec Runner</title>
+
+<link rel="stylesheet" type="text/css"
+	href="/dev/jasmine-1.2.0/jasmine.css">
+<script src="/dev/jasmine-1.2.0/jasmine.js"></script>
+<script src="/dev/jasmine-1.2.0/jasmine-html.js"></script>
+
+<!--  Utility functions for the jasmine library -->
+<script src="/dev/sinon-1.5.2.js"></script>
+<script src="/dev/Matchers.js"></script>
+<script src="/dev/jqMocks.js"></script>
+
+
+<script src="/dev/jquery-1.7.2.min.js"></script>
+<!-- include source files here... -->
+
+<script src="lib/cali-sdk.js"></script>
+
+
+<!-- include test files here... -->
+<script src="spec/Emitter.spec.js"></script>
+<script src="spec/extend.spec.js"></script>
+
+
+
+<script>
+	(function() {
+		var jasmineEnv = jasmine.getEnv();
+		jasmineEnv.updateInterval = 1000;
+
+		var htmlReporter = new jasmine.HtmlReporter();
+
+		jasmineEnv.addReporter(htmlReporter);
+
+		jasmineEnv.specFilter = function(spec) {
+			return htmlReporter.specFilter(spec);
+		};
+
+		var currentWindowOnload = window.onload;
+
+		window.onload = function() {
+			if (currentWindowOnload) {
+				currentWindowOnload();
+			}
+			execJasmine();
+		};
+
+		function execJasmine() {
+			jasmineEnv.execute();
+		}
+
+	})();
+</script>
+
+</head>
+
+<body>
+
+	<div id="history_view_comment"></div>
+</body>
+</html>
