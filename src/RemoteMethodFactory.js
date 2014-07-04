@@ -13,12 +13,12 @@
 		
 		this.listener = function(args){
 			var cbId = args[0];
-			var out = args[1]
+			var out = args[1];
 			if(typeof cbList[cbId] == "function"){
 				cbList[cbId].apply(this, out);
 				delete cbList[cbId];
 			}
-		}
+		};
 		
 		var proxySend = function(name, func){
 			
@@ -35,8 +35,8 @@
 					cbList[callbackId] = cb;
 				}
 				self.async.send("remote", callbackId, name, func, args);
-			}
-		}
+			};
+		};
 		
 		this.create = function(name, methodList){
 			var obj = {};
@@ -44,12 +44,12 @@
 				obj[methodList[k]] = proxySend(name, methodList[k]);
 			}
 			return obj;
-		}
+		};
 		
 		this.bind = function(async){
 			this.async = async;
 			this.async.on("callback", this.listener);
-		}
+		};
 	}
 	
 	// create the namspace

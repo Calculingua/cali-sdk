@@ -13,7 +13,7 @@
 			var cbId = args[0];
 			var objName = args[1];
 			var funcName = args[2];
-			var arguments = args[3];
+			var fargs = args[3];
 			
 			var calledObj = objs;
 			var objNameToks = objName.split(".");
@@ -21,21 +21,21 @@
 				calledObj = calledObj[objNameToks[k]];
 			}
 			if(cbId != null){
-				arguments.push(function(){
+				fargs.push(function(){
 					var args = [];
-					for(var i = 0; i < arguments.length; i++){
-						args.push(arguments[i]);
+					for(var i = 0; i < fargs.length; i++){
+						args.push(fargs[i]);
 					}
 					self.async.send("callback", cbId, args);
 				});
 			}
-			calledObj[funcName].apply(this, arguments);
-		}
+			calledObj[funcName].apply(this, fargs);
+		};
 		
 		this.bind = function(async){
 			self.async = async;
 			async.on("remote", self.listener);
-		}
+		};
 	}
 	
 	// create the namspace
