@@ -6,10 +6,13 @@
 		// space
 		search = /([^&=]+)=?([^&]*)/g, decode = function(s) {
 			return decodeURIComponent(s.replace(pl, " "));
-		}, query = window.location.search.substring(1);
+		}, query = $window.location.search.substring(1);
 
-		while (match = search.exec(query))
+		match = search.exec(query);
+		while (match){
 			urlParams[decode(match[1])] = decode(match[2]);
+			match = search.exec(query);
+		}
 
 		return urlParams;
 	};

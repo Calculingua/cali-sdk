@@ -3,7 +3,7 @@
   Proprietary and confidential 
  
   Author : [William Burke](mailto:wburke@calculingua.com)  
-  Date : 2014-07-03 */ 
+  Date : 2014-07-04 */ 
 
 // # Emitter.js
 // An emitter class for even emitting.  This is modeled after the node.js EventEmitter.  
@@ -32,6 +32,7 @@
 		// initialize the local iterators
 		var localMulti = [];
 		var localSingle = [];
+		var i;
 		// Copy the class variables to isolate it from any additions or
 		// subtractions. Copying to retaining the references to the functions.
 		if (this.listeners[event]) {
@@ -43,7 +44,7 @@
 		}
 
 		// iterate through the local variables
-		for ( var i = 0; i < localMulti.length; i++) {
+		for ( i = 0; i < localMulti.length; i++) {
 			try {
 				localMulti[i].apply(null, args);
 			} catch (ex) {
@@ -51,7 +52,7 @@
 			}
 
 		}
-		for ( var i = 0; i < localSingle.length; i++) {
+		for (i = 0; i < localSingle.length; i++) {
 			try {
 				localSingle[i].apply(null, args);
 			} catch (ex) {
@@ -93,16 +94,17 @@
 	// ### removeListener()
 	// Removes a `listener` or a `once listener`.
 	Emitter.prototype.removeListener = function(event, callback) {
+		var i;
 		// remove the repeated listeners
 		if (this.listeners[event]) {
-			var i = this.listeners[event].indexOf(callback);
+			i = this.listeners[event].indexOf(callback);
 			if (i >= 0) {
 				this.listeners[event].splice(i, 1);
 			}
 		}
 		// remove the single listeners
 		if (this.singleListener[event]) {
-			var i = this.singleListener[event].indexOf(callback);
+			i = this.singleListener[event].indexOf(callback);
 			if (i >= 0) {
 				this.singleListener[event].splice(i, 1);
 			}
@@ -110,17 +112,18 @@
 	};
 
 	Emitter.prototype.removeAllListeners = function(args) {
+		var event;
 		if (arguments.length > 0) {
 			for ( var i = 0; i < arguments.length; i++) {
 				delete this.listeners[arguments[i]];
 				delete this.singleListener[arguments[i]];
 			}
 		} else {
-			for ( var event in this.listeners) {
+			for ( event in this.listeners) {
 				delete this.listeners[event];
 			}
 
-			for ( var event in this.singleListener) {
+			for ( event in this.singleListener) {
 				delete this.singleListener[event];
 			}
 
@@ -252,10 +255,13 @@ if (Object.defineProperty) {
 		// space
 		search = /([^&=]+)=?([^&]*)/g, decode = function(s) {
 			return decodeURIComponent(s.replace(pl, " "));
-		}, query = window.location.search.substring(1);
+		}, query = $window.location.search.substring(1);
 
-		while (match = search.exec(query))
+		match = search.exec(query);
+		while (match){
 			urlParams[decode(match[1])] = decode(match[2]);
+			match = search.exec(query);
+		}
 
 		return urlParams;
 	};

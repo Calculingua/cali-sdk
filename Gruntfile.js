@@ -4,6 +4,10 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
 		jshint: {
+			options: {
+				multistr: true,
+				eqnull: true,
+			},
 			source: grunt.option("src"),
 		},
 		concat: {
