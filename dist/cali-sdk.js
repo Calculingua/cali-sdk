@@ -3,7 +3,7 @@
   Proprietary and confidential 
  
   Author : [William Burke](mailto:wburke@calculingua.com)  
-  Date : 2014-07-04 */ 
+  Date : 2014-07-05 */ 
 
 // # Emitter.js
 // An emitter class for even emitting.  This is modeled after the node.js EventEmitter.  
@@ -232,8 +232,8 @@
 			if(cbId != null){
 				fargs.push(function(){
 					var args = [];
-					for(var i = 0; i < fargs.length; i++){
-						args.push(fargs[i]);
+					for(var i = 0; i < arguments.length; i++){
+						args.push(arguments[i]);
 					}
 					self.async.send("callback", cbId, args);
 				});

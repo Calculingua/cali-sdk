@@ -1,6 +1,6 @@
 {
   "name": "cali-sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "cali-sdk ========",
   "main": "dist/cali-sdk.js",
   "directories": {

@@ -23,8 +23,8 @@
 			if(cbId != null){
 				fargs.push(function(){
 					var args = [];
-					for(var i = 0; i < fargs.length; i++){
-						args.push(fargs[i]);
+					for(var i = 0; i < arguments.length; i++){
+						args.push(arguments[i]);
 					}
 					self.async.send("callback", cbId, args);
 				});
